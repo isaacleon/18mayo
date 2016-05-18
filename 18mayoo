@@ -1,0 +1,28 @@
+pib <- read.csv("C:\\Users\\SALA-C22\\Documents\\SERIE1.csv")
+library (foreign)
+library (fpp)
+pibs <- ts(pib[,2],start=1993, frequency=4)
+pibs
+#lineal
+ajuste1<-holt(pibs)
+ajuste1
+#exponencial
+ajuste2 <- holt(pibs,exponential=T)
+ajuste2
+#multiplicativo amortiguado
+ajuste3<- holt(pibs,exponential = T,dumped=T)
+ajuste3
+#aditivo amortiguado
+ajuste4<- holt(pibs, dumped=T)
+ajuste4
+plot(pibs,xlab="Año")
+lines(fitted(ajuste1),col="deepskyblue4",type="o")
+lines(fitted(ajuste2),col="deepskyblue3",type="o")
+lines(fitted(ajuste3),col="deepskyblue",type="o")
+lines(fitted(ajuste4),col="blue",type="o")
+legend("topleft",lty=1,col = c(1,"deepskyblue4","deepskyblue3","deepskyblue","blue"),c("data","modelo1","modelo2","modelo3","modelo4",pch=10)
+
+petroleo <- read.csv("C:\\Users\\SALA-C22\\Documents\\SERIE2.csv")
+View(petroleo)
+petroleos <-ts(petroleo[,2],start=1998, frequency=4)
+View(petroleos)
